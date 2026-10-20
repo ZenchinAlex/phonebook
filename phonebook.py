@@ -27,6 +27,7 @@ while True:
     print("1 - Поиск")
     print("2 - Добавить")
     print("3 - Показать все")
+    print("4 - Удалить")
     print("0 - Выход")
     choice = input("Выберите действие: ")
 
@@ -58,6 +59,20 @@ while True:
             for contact in contacts:
                 print(f"{number}. {contact['name']} {contact['phone']}")
                 number = number + 1
+
+    elif choice == "4":
+        name = input("Введите имя: ")
+        phone = input("Введите телефон: ")
+        found = False
+        for contact in contacts:
+            if contact["name"] == name and contact["phone"] == phone:
+                contacts.remove(contact)
+                save_contacts(contacts, "contacts.json")
+                print("Контакт удалён")
+                found = True
+                break
+        if not found:
+            print("Контакт не найден")
     
     elif choice == "0":
         break
